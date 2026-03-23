@@ -17,7 +17,7 @@ def research(request):
         if not topic:
             return JsonResponse({'error': 'Please enter a topic'}, status=400)
         
-        result = research_topic(topic)
+        result = research_topic(topic, request.user.id)
         
         query = ResearchQuery.objects.create(
             user=request.user,
