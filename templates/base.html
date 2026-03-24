@@ -6,20 +6,35 @@
     <title>ResearchAI</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body { background-color: #f8f9fa; }
-        .navbar { background-color: #1a1a2e; }
-        .navbar-brand { color: #e94560 !important; font-weight: bold; }
-        .btn-primary { background-color: #e94560; border: none; }
+        body { background-color: #0f0f1a; color: #e0e0e0; }
+        .navbar { background-color: #1a1a2e; border-bottom: 1px solid #e94560; }
+        .navbar-brand { color: #e94560 !important; font-weight: bold; font-size: 1.4rem; }
+        .card { background-color: #1a1a2e; border: 1px solid #2a2a4a; border-radius: 12px; color: #e0e0e0; }
+        .form-control { background-color: #0f0f1a; border: 1px solid #2a2a4a; color: #e0e0e0; }
+        .form-control:focus { background-color: #0f0f1a; border-color: #e94560; color: #e0e0e0; box-shadow: 0 0 0 0.2rem rgba(233,69,96,0.25); }
+        .form-control::placeholder { color: #666; }
+        .btn-primary { background-color: #e94560; border: none; font-weight: 500; }
         .btn-primary:hover { background-color: #c73652; }
-        .card { border: none; border-radius: 12px; box-shadow: 0 2px 15px rgba(0,0,0,0.1); }
+        .btn-primary:disabled { background-color: #7a2233; }
+        .text-muted { color: #888 !important; }
+        .border-bottom { border-bottom: 1px solid #2a2a4a !important; }
+        .badge-ai { background-color: #e94560; color: white; font-size: 11px; padding: 3px 8px; border-radius: 20px; }
+        a { color: #e94560; }
+        a:hover { color: #c73652; }
+        .result-content { background-color: #0f0f1a; border-radius: 8px; padding: 1.5rem; line-height: 1.8; white-space: pre-wrap; }
+        .spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid #fff; border-radius: 50%; border-top-color: transparent; animation: spin 0.8s linear infinite; margin-right: 8px; }
+        @keyframes spin { to { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
     <nav class="navbar navbar-dark px-4 py-3">
         <span class="navbar-brand">ResearchAI</span>
-        {% if user.is_authenticated %}
-        <a href="{% url 'logout' %}" class="btn btn-outline-light btn-sm">Logout</a>
-        {% endif %}
+        <div class="d-flex align-items-center gap-3">
+            {% if user.is_authenticated %}
+            <span class="text-muted small">{{ user.email }}</span>
+            <a href="{% url 'logout' %}" class="btn btn-outline-light btn-sm">Logout</a>
+            {% endif %}
+        </div>
     </nav>
     <div class="container mt-4">
         {% block content %}{% endblock %}

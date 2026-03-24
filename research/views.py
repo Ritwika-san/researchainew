@@ -6,7 +6,7 @@ from .models import ResearchQuery
 
 @login_required
 def home(request):
-    return render(request, 'research/home.html')
+    queries = ResearchQuery.objects.filter(user=request.user)
     return render(request, 'research/home.html', {'queries': queries})
 
 @login_required
