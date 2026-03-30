@@ -102,4 +102,4 @@ if os.getenv('DATABASE_URL'):
         conn_max_age=600,
         ssl_require=True
     )
- USE_CHROMA = os.getenv("USE_CHROMA", "False") == "True"
+ 
